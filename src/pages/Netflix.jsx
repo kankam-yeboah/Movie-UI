@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import backgroundImage from "../assets/home.jpg";
 import movieLogo from "../assets/homeTitle.webp";
@@ -6,10 +6,30 @@ import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfo } from "react-icons/ai";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { getGenres, selectAllGenres } from "../features/genres/genresSlice";
+import { fetchMovies, selectAllMovies } from "../features/movies/moviesSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Netflix() {
+  const genres = useSelector(selectAllGenres);
+  const movies = useSelector(selectAllMovies);
+
+  console.log(movies);
+
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (genres.genresLoaded) {
+      dispatch(fetchMovies({ type: "all" }));
+    }
+  }, [dispatch, genres]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);

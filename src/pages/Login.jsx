@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
@@ -8,10 +8,15 @@ import { firebaseAuth } from "../utils/firebase-config";
 import { useAuth } from "../utils/auth";
 
 export default function Login() {
+  const [checkState, setCheckState] = useState(true);
   const emailInput = useRef();
   const passwordInput = useRef();
   const navigate = useNavigate();
   const auth = useAuth();
+
+  const handleCheckboxClick = () => {
+    setCheckState(!checkState);
+  };
 
   const handleSignIn = async () => {
     try {
@@ -46,7 +51,7 @@ export default function Login() {
               <div className="form-info flex column">
                 <div className="form-info-checkpoint flex a-center j-between">
                   <div className="form-info-checkbox">
-                    <input type="checkbox" name="remember" id="remember" checked />
+                    <input type="checkbox" name="remember" id="remember" checked={checkState} onChange={handleCheckboxClick} />
                     <label htmlFor="remember">Remember me</label>
                   </div>
                   <Link to="/forgot-password">Need help?</Link>
