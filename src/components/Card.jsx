@@ -13,6 +13,7 @@ const Container = styled.div`
   max-width: 250px;
   width: 250px;
   height: 100%;
+  cursor: pointer;
   img {
     max-width: 100%;
     max-height: 100%;
