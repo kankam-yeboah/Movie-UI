@@ -9,12 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { getGenres, selectAllGenres } from "../features/genres/genresSlice";
 import { fetchMovies, selectAllMovies } from "../features/movies/moviesSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Slider from "../components/Slider";
 
 export default function Netflix() {
   const genres = useSelector(selectAllGenres);
   const movies = useSelector(selectAllMovies);
-
-  console.log(movies);
 
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,6 +53,7 @@ export default function Netflix() {
           </div>
         </div>
       </div>
+      <Slider allmovies={movies} />
     </Container>
   );
 }
@@ -71,16 +71,16 @@ const Container = styled.div`
     }
     .container {
       position: absolute;
-      bottom: 5rem;
+      bottom: 7rem;
       .logo {
         img {
           height: 100%;
           width: 100%;
-          margin-left: 5rem;
+          margin-left: 3rem;
         }
       }
       .buttons {
-        margin: 5rem;
+        margin: 3rem;
         gap: 2rem;
         button {
           gap: 1rem;
