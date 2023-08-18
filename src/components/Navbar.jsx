@@ -85,7 +85,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     z-index: 2;
-    padding: 0 4rem;
+    padding: 0 2rem;
     transition: 0.3s ease-in-out;
     .left {
       gap: 2rem;

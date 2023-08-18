@@ -2,6 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API_KEY, TMDB_BASE_URL } from "../../utils/constants";
 import axios from "axios";
 
+const initialState = {
+  loadingState: "idle",
+  allmovies: [],
+  error: "",
+};
+
 const moviesArrayFromRawData = (moviesRawData, genres, moviesArray) => {
   moviesRawData.forEach((movie) => {
     let movieGenres = [];
@@ -44,12 +50,6 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async ({ type 
   }
 });
 
-const initialState = {
-  loadingState: "idle",
-  movies: [],
-  error: "",
-};
-
 const moviesSlice = createSlice({
   name: "movies",
   initialState,
@@ -60,7 +60,7 @@ const moviesSlice = createSlice({
         state.loadingState = "loading";
       })
       .addCase(fetchMovies.fulfilled, (state, action) => {
-        state.movies = action.payload;
+        state.allmovies = action.payload;
         state.loadingState = "idle";
       })
       .addCase(fetchMovies.rejected, (state, action) => {
@@ -70,6 +70,6 @@ const moviesSlice = createSlice({
   },
 });
 
-export const selectAllMovies = (state) => state.movies;
+export const selectAllMovies = (state) => state.movies.allmovies;
 
 export default moviesSlice.reducer;
