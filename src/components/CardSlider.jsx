@@ -9,9 +9,19 @@ const CardSlider = ({ data, title }) => {
   const listRef = useRef();
 
   const handleSliderControlsDirection = (direction) => {
-    let distance = ((listRef.current.getBoundingClientRect().x - 44.79999923706055) / 100) * 100;
-    console.log(distance);
-    if (direction === "right" && sliderPosition !== 4) {
+    //Apply different sliderPositions for different size screen media
+    const current_media = window.innerWidth;
+    let sliderPositionMax;
+    if (current_media < 600) {
+      sliderPositionMax = 6;
+    } else if (current_media < 1000) {
+      sliderPositionMax = 5;
+    } else {
+      sliderPositionMax = 4;
+    }
+
+    let distance = listRef.current.getBoundingClientRect().x - 44.79999923706055;
+    if (direction === "right" && sliderPosition !== sliderPositionMax) {
       listRef.current.style.transform = `translateX(${-450 + distance}px)`;
       setSliderPosition(sliderPosition + 1);
     }
@@ -64,7 +74,7 @@ const Container = styled.div`
       position: relative;
       .slider-card-container {
         gap: 0.2rem;
-        transform: translateX(0%);
+        transform: translateX(0px);
         transition: 0.3s ease-in-out;
       }
       .slider-icon {

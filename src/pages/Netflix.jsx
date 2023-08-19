@@ -39,17 +39,19 @@ export default function Netflix() {
       <Navbar isScrolled={isScrolled} />
       <div className="hero">
         <img src={backgroundImage} alt="Background" className="background-image" />
-        <div className="container">
-          <div className="logo">
-            <img src={movieLogo} alt="Movie Logo" />
-          </div>
-          <div className="buttons flex">
-            <button className="flex a-center j-center" onClick={() => navigate("/player")}>
-              <FaPlay /> Play
-            </button>
-            <button className="flex a-center j-center">
-              <AiOutlineInfo /> More Info
-            </button>
+        <div className="container-shade">
+          <div className="container">
+            <div className="logo">
+              <img src={movieLogo} alt="Movie Logo" />
+            </div>
+            <div className="buttons flex">
+              <button className="flex a-center j-center" onClick={() => navigate("/player")}>
+                <FaPlay /> Play
+              </button>
+              <button className="flex a-center j-center">
+                <AiOutlineInfo /> More Info
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -61,6 +63,7 @@ export default function Netflix() {
 const Container = styled.div`
   .hero {
     position: relative;
+    margin-bottom: 1rem;
     .background-image {
       filter: brightness(60%);
     }
@@ -69,35 +72,43 @@ const Container = styled.div`
       width: 100vw;
       object-fit: cover;
     }
-    .container {
+    .container-shade {
       position: absolute;
-      bottom: 7rem;
-      .logo {
-        img {
-          height: 100%;
-          width: 100%;
-          margin-left: 3rem;
-        }
-      }
-      .buttons {
-        margin: 3rem;
-        gap: 2rem;
-        button {
-          gap: 1rem;
-          font-size: 1.4rem;
-          padding: 0.5rem 2.4rem;
-          border: none;
-          border-radius: 0.2rem;
-          cursor: pointer;
-          transition: 0.3s ease-in-out;
-          &:hover {
-            opacity: 0.8;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: inset 0 0 5000px rgba(0, 0, 0, 1);
+      .container {
+        position: absolute;
+        bottom: 7rem;
+        .logo {
+          img {
+            height: 100%;
+            width: 100%;
+            margin-left: 3rem;
           }
-          &:nth-of-type(2) {
-            background-color: rgba(109, 109, 110, 0.7);
-            color: white;
-            svg {
-              font-size: 1.8rem;
+        }
+        .buttons {
+          margin: 3rem;
+          gap: 2rem;
+          button {
+            gap: 1rem;
+            font-size: 1.4rem;
+            padding: 0.5rem 2.4rem;
+            border: none;
+            border-radius: 0.2rem;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            &:hover {
+              opacity: 0.8;
+            }
+            &:nth-of-type(2) {
+              background-color: rgba(109, 109, 110, 0.7);
+              color: white;
+              svg {
+                font-size: 1.8rem;
+              }
             }
           }
         }
