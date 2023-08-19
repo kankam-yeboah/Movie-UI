@@ -8,13 +8,13 @@ const CardSlider = ({ data, title }) => {
   const [sliderPosition, setSliderPosition] = useState(1);
   const listRef = useRef();
 
+  const current_media = window.innerWidth;
   const handleSliderControlsDirection = (direction) => {
     //Apply different sliderPositions for different size screen media
-    const current_media = window.innerWidth;
     let sliderPositionMax;
     if (current_media < 600) {
       sliderPositionMax = 6;
-    } else if (current_media < 1000) {
+    } else if (current_media < 1300) {
       sliderPositionMax = 5;
     } else {
       sliderPositionMax = 4;
