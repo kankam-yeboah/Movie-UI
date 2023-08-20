@@ -20,6 +20,10 @@ const moviesArrayFromRawData = (moviesRawData, genres, moviesArray) => {
         id: movie.id,
         name: movie?.title ? movie.title : movie.original_title,
         image: movie.backdrop_path,
+        popularity: movie?.popularity,
+        releaseDate: movie?.release_date,
+        adultRate: movie?.adult,
+        overview: movie?.overview.slice(0, 100),
         genres: movieGenres.slice(0, 3),
       });
     }
