@@ -67,11 +67,12 @@ const Container = styled.div`
     margin-top: 1rem;
   }
   .slider {
-    gap: 0.5rem;
+    gap: 0.1rem;
     position: relative;
     .slider-action {
       align-items: center;
       position: relative;
+      height: 190px;
       .slider-card-container {
         gap: 0.2rem;
         transform: translateX(0px);
