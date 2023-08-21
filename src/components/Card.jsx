@@ -7,9 +7,16 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoHeartCircleOutline } from "react-icons/io";
 import { BsPlayCircle } from "react-icons/bs";
 import { SlArrowDown } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ movieData }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+
+  const handlePlayerBtnClick = () => {
+    navigate("/player");
+  }
+
   return (
     <Container onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <div className="card">
@@ -38,7 +45,7 @@ const Card = ({ movieData }) => {
               </div>
             </div>
             <div className="movieCardPlayBtn">
-                <BsPlayCircle />
+                <BsPlayCircle onClick={handlePlayerBtnClick} />
             </div>
             <div className="movieCardDownArror">
               <SlArrowDown />
